@@ -112,20 +112,32 @@ elif branchChoice == "2":
     print("Please enter a valid number." + "\n" + "Restart the program.")
 # prime number checker
 elif branchChoice == "3":
-  p = int(input("What number would you like to test? "))
+  p = input("Input an integer to be tested: ")
   print()
-  flag = False
-  if p == 0 or p == 1:
-    print(p, "is not a prime number.")
-  elif p > 1:
-    for i in range(2, p):
-        if (p % i) == 0:
-            flag = True
-            break
-    if flag:
-        print(p, "is a composite number.")
+
+  try:
+    p = int(p)
+    if p <= 1:
+        flag = False
+    elif p <= 3:
+        flag = True
+    elif p % 2 == 0 or p % 3 == 0:
+        flag = False
     else:
-        print(p, "is a prime number.")
+        i = 5
+        while i * i <= p:
+            if p % i == 0 or p % (i + 2) == 0:
+                flag = False
+                break
+            i += 6
+        else:
+            flag = True
+    if flag:
+        print(f"{p} is prime.")
+    else:
+        print(f"{p} is not prime.")
+  except ValueError:
+    print(f"{p} is not an integer. Input an integer.")
 elif branchChoice == "4":
   y2 = int(input("What is your second y-coordinate? "))
   y1 = int(input("What is your first y-coordinate? "))
